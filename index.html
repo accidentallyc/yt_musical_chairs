@@ -1,0 +1,82 @@
+<html>
+  <head>
+      <title>YT's Musical Chairs</title>
+      <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <script src="http://www.youtube.com/iframe_api"></script>
+      <link href="./index.css" type="text/css" rel="stylesheet"/>
+    </head>
+    <body>
+      <div id="app">
+
+        <div id="menu" v-if="currentScreen == 'menu'">
+          <p style="font-size:0.8em; margin-bottom:2em;">
+            YT's Musical Chairs is a small web app that stops and starts any YT music of your choice
+            for any musical chair type game. <span style="color:red;">often times a video may
+            not be embeddable</span>
+
+          </p>
+          <p style="font-size:0.8em; color: #666">
+            The dancing letters are taken from <a href="dance.cavifax.com">dance.cavifax.com</a> and
+            are owned by them.
+          </p>
+          <label for="input_yt">Youtube Video</label>
+          <input id="input_yt" type="text" v-model="model.YTLink" />
+          <a href="#" id="toggleMenu" v-on:click="toggleCustomizeMenu">{{showCustomizeMessage}}</a>
+          <div v-if="showCustomizeMenu">
+            <table>
+              <tr>
+                <td><label for="input_minPause">Min Pause Time</label></td>
+                <td><input id="input_minPause" type="number" v-model="model.minPause" /></td>
+                <td><label for="input_maxPause">Max Pause Time</label></td>
+                <td><input id="input_maxPause" type="number" v-model="model.maxPause" /></td>
+              </tr>
+              
+              <tr>
+                <td><label for="input_minPlaytime">Min Play Time</label></td>
+                <td><input id="input_minPlaytime" type="number" v-model="model.minPlaytime"/></td>
+                <td><label for="input_maxPlaytime">Max Play Time</label></td>
+                <td><input id="input_maxPlaytime" type="number" v-model="model.maxPlaytime"/></td>
+              </tr>
+
+              <tr>
+                <td><label for="input_maxIterations">Max Iterations</label></td>
+                <td><input id="input_maxIterations" type="number" v-model="model.maxIterations"/></td>
+              </tr>
+            </table>
+          </div>
+          <div>
+            <button id="btn_start" v-on:click="startGame">START</button>
+          </div>
+        </div>
+        
+        <!-- <div v-if="currentScreen == 'game'" v-on:click="toggleGameMenu" id="game-menu">
+            <span class="menu-item" v-bind:class="{inactive: !game.isShowingMenu}" >
+              <div class="icon">👁</div>
+              <div style="font-size:0.6em;  
+              position: relative; top: -8px;">toggle info</div>              
+            </span>
+        </div> -->
+
+        <div v-if="currentScreen == 'game'"> 
+          <a v-on:click="backToMenu" style="position: fixed;top: -19px;left: 9px;font-size: 5em; cursor: pointer" class="inactive">⇦</a>
+          <div id="player"></div>
+          <div id="dance-container" v-if="!game.isPaused">
+            <img :key="'dance_d'" src="./assets/dance.cavifax.com/d.gif" />
+            <img :key="'dance_a'" src="./assets/dance.cavifax.com/a.gif" />
+            <img :key="'dance_n'" src="./assets/dance.cavifax.com/n.gif" />
+            <img :key="'dance_c'" src="./assets/dance.cavifax.com/c.gif" />
+            <img :key="'dance_e'" src="./assets/dance.cavifax.com/e.gif" />
+          </div>
+          <div id="stop-container" v-else-if="game.isPaused">
+            <img :key="'dance_stop'" src="./assets/stop.png" />
+          </div>
+        </div>
+
+      </div>
+      <script src="./main.js"></script>
+  </body>
+</html>
+
+

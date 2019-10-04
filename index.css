@@ -1,0 +1,100 @@
+* {
+  box-sizing: border-box;
+  resize: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+input,table {
+  padding:0.5em;
+  width: 100%;
+  margin: 0.5em 0;
+}
+
+.inactive {
+  opacity: 0.5;
+}
+.inactive:hover {
+  opacity: 1;
+}
+
+#app {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  width:640px;
+  height:390px;
+}
+
+#menu {
+  text-align: center;
+}
+
+#toggleMenu {
+  font-size:0.7em;
+  position: absolute;
+  right: 0;
+  top: 14.5em;
+}
+
+
+#btn_start {
+  padding: 1em 2em;
+  margin:0.5em 0;
+}
+
+
+/* */
+
+#game-menu {
+  position: absolute;
+  top:-4em;
+  display: flex;
+}
+
+#game-menu .menu-item {
+  text-align: center; 
+  cursor: pointer;
+  width: 50px;
+}
+
+#game-menu .icon {
+  font-size: 2em;
+}
+
+
+#stop-container {
+  position: absolute;
+  top:0;
+  bottom:0;
+  margin: auto;
+  height: 24em;
+  width: 24em;
+  left: 0;
+  right: 0;
+}
+#stop-container img {
+  height: 100%;
+}
+
+#dance-container {
+  position: absolute;
+  top:0;
+  bottom:0;
+  margin: auto;
+  height: 6em;
+  width: 100%;
+
+  text-align: center;
+  width: 100%;
+}
+#dance-container img {
+  width:6em;
+}
+
+#player {
+  opacity: 0.1;
+}
